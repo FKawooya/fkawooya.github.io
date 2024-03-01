@@ -1,0 +1,32 @@
+---
+layout: default
+---
+
+<div class="home">
+  <div
+    class="max-h-full py-12 h-[50%]"
+  >
+    <div class="text-center">
+      <p
+        class="lg:text-6xl font-[Anton] xl:text-7xl md:text-5xl text-4xl sm:text-6xl font-bold text-black tracking-wider"
+      >
+        GALLERY
+      </p>
+    </div>
+  </div>
+
+  <div class="xl:px-32 lg:px-24 px-2 py-10">
+    <div
+      class="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 gap-x-4 pr-12 xl:pr-4 lg:pr-4 mt-8 "
+    >
+     
+      {% for img in site.data.main.gallery %}
+      <img
+      src="{{img.path}}"
+      alt="Paris"
+      class="w-full h-auto ml-0 sm:ml-4 md:ml-4 rounded-md"
+    />
+    {% endfor %}
+    </div>
+  </div>
+</div>
