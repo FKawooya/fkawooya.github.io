@@ -230,7 +230,7 @@
         left: 0;
         bottom: 0;
         height: 4px;
-        background: $primary-color;
+        background: #EC255A;
         width: 100%;
         -webkit-transition: $global-transition;
         transition: $global-transition;
@@ -458,7 +458,7 @@
 .nav__title {
   margin: 0;
   padding: 0.5rem 1rem;
-  font-family: $sans-serif-narrow;
+  font-family: $schibsted-grotesk;
   font-size: $type-size-5;
   font-weight: bold;
 }
