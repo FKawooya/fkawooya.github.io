@@ -1,59 +1,30 @@
 ---
-layout: default
+layout: archive
 ---
 
-<div class="home">
-  <div
-    class="max-h-full py-12  h-[50%]"
-  >
-    <div class="text-center">
-      <p
-        class="lg:text-6xl font-[Anton] xl:text-7xl md:text-5xl text-4xl sm:text-6xl font-bold  tracking-wider"
-      >
-        BLOG
-      </p>
-    </div>
-  </div>
+{{ content }}
 
-  <div class=" xl:px-56 lg:px-48 px-2 py-10">
-  
-    {% for podcast in site.posts limit:3 %}
-    <a
-      href="{{ podcast.url | relative_url }}"
-      class="lg:flex lg:flex-row lg:max-h-screen py-6 xl:max-h-screen max-h-full xl:flex xl:flex-row"
-    >
-      <div class="lg:w-4/12 xl:w-2/5 pl-0 lg:pl-4 xl:pl-4">
-        <img
-          src="/assets/img1.jpg"
-          class="aspect-[890/569]"
-          alt="Paris"
-          class="rounded-lg"
-        />
-      </div>
-      <div class="w-full lg:w-8/12 pl-4">
-        <p
-          class="font-bold text-black 2xl:text-3xl xl:text-xl lg: text-lg tracking-tighter md:pt-4 sm:pt-4 lg:pt-0 xl:pt-0 mt-0"
-        >
-          {{podcast.title}}
-        </p>
-        <p
-          class="text-black text-xs mt-4 2xl:text-lg xl:text-sm xl:mt-4 lg:text-xs 2xl:mt-6 lg:mt-1 tracking-tight"
-        >
-          {{podcast.description}}
-        </p>
-        <button
-          class="bg-indigo-600 mt-4 hover:bg-blue-700 text-white 2xl:mt-8 xl:mt-4 lg:mt-2 tracking-tight ml-0 xl:font-semibold text-xs py-2 lg:py-1 xl:py-2 px-3 rounded-full"
-        >
-          READ MORE
-        </button>
-        <div class="text-xs mt-4 lg:mt-1 xl:mt-4 text-black">
-          20 DEC • 2020
-          <span class="pl-4">1 hr 5 min</span>
-          <span class="pl-4">VIDEO</span>
-        </div>
-      </div>
-    </a>
-    <hr class="mx-4 my-4 md:my-0 border-[#d3d3d366]" />
-    {% endfor %}
-  </div>
-</div>
+<ul class="taxonomy__index">
+  {% assign postsInYear = site.posts | where_exp: "item", "item.hidden != true" | group_by_exp: 'post', 'post.date | date: "%Y"' %}
+  {% for year in postsInYear %}
+    <li>
+      <a href="#{{ year.name }}">
+        <strong>{{ year.name }}</strong> <span class="taxonomy__count">{{ year.items | size }}</span>
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+
+{% assign entries_layout = page.entries_layout | default: 'list' %}
+{% assign postsByYear = site.posts | where_exp: "item", "item.hidden != true" | group_by_exp: 'post', 'post.date | date: "%Y"' %}
+{% for year in postsByYear %}
+  <section id="{{ year.name }}" class="taxonomy__section">
+    <h2 class="archive__subtitle">{{ year.name }}</h2>
+    <div class="entries-{{ entries_layout }}">
+      {% for post in year.items %}
+        {% include archive-single.html type=entries_layout %}
+      {% endfor %}
+    </div>
+    <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+  </section>
+{% endfor %}
