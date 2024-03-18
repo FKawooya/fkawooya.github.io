@@ -4,14 +4,10 @@ author_profile: true
 permalink: /gallery/
 
 images:
-- title: Introduction
-  url: /assets/images/img1.jpg
-- title: Configuration
-  url: /assets/images/img2.png
-- title: Deployment
-  url: /assets/images/img3.jpg
-- title: Deployment
-  url: /assets/images/img3.jpg  
+  - /assets/images/img1.jpg
+  - /assets/images/img2.png
+  - /assets/images/img3.jpg
+  - /assets/images/img3.jpg  
   
 ---
 
