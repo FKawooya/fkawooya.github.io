@@ -6,6 +6,8 @@ main:
     url: /posts/
   - title: "Source Code"
     url: https://github.com/limyunkai19/minimal-mistakes-jekyll
+  - title: "Gallery"
+    url: /gallery/
   # - title: "Sample Collections"
   #   url: /collection-archive/
   # - title: "Sitemap"
